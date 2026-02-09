@@ -3,350 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Thorne Laboratory - Secure Vault</title>
+    <title>SECURE VAULT ACCESS</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Orbitron:wght@500;700&display=swap');
-
-        * {
-            box-sizing: border-box;
-        }
-
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+        
         body {
-            background-color: #1a1a1a;
+            background-color: #0d0d0d;
+            color: #00ff41;
+            font-family: 'Courier Prime', monospace;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            height: 100vh;
             margin: 0;
-            padding: 20px; /* Jarak aman di HP */
-            font-family: 'Orbitron', sans-serif;
-            overflow: hidden; /* Mencegah scroll saat animasi */
-        }
-
-        /* WADAH UTAMA (RESPONSIVE) */
-        .vault-container {
-            position: relative;
-            width: 100%;
-            max-width: 360px; /* Maksimal lebar di Desktop */
-            height: 550px; /* Tinggi tetap agar proporsional */
-            perspective: 1000px;
-        }
-
-        /* PINTU BRANKAS */
-        .vault-door {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(145deg, #2b2b2b, #111);
-            border-radius: 20px;
-            box-shadow: 10px 10px 30px rgba(0,0,0,0.8), inset 2px 2px 5px rgba(255,255,255,0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 8px solid #444;
-            position: absolute;
-            z-index: 2;
-            transition: transform 1.5s ease-in-out;
-            transform-origin: left;
-            padding: 20px;
-        }
-
-        /* RODA PUTAR */
-        .dial-container {
-            position: relative;
-            width: 140px;
-            height: 140px;
-            margin-bottom: 25px;
-        }
-
-        .dial {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: radial-gradient(circle, #555 10%, #222 90%);
-            border: 5px solid #777;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-            position: relative;
-            transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .dial::before {
-            content: '';
-            position: absolute;
-            top: 5px;
-            left: 50%;
-            width: 4px;
-            height: 15px;
-            background: red;
-            transform: translateX(-50%);
+            overflow: hidden;
         }
         
-        .knob {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px;
-            height: 40px;
-            background: #111;
-            border-radius: 50%;
-            border: 2px solid #555;
-        }
-
-        /* LAYAR INPUT */
-        .display-screen {
-            background-color: #0f0f0f;
-            border: 2px solid #333;
-            color: #00ff00;
-            padding: 12px;
-            font-size: 22px;
+        .container {
             text-align: center;
             width: 90%;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            box-shadow: inset 0 0 10px #004400;
-            outline: none;
-        }
-
-        .display-screen::placeholder {
-            color: #004400;
-            font-size: 14px;
-            letter-spacing: 1px;
-        }
-
-        /* TOMBOL BUKA */
-        .btn-unlock {
-            background: linear-gradient(to bottom, #d32f2f, #8b0000);
-            color: white;
-            border: none;
-            padding: 15px 0;
-            width: 90%; /* Lebar tombol menyesuaikan */
-            font-size: 18px;
-            font-family: 'Orbitron', sans-serif;
-            border-radius: 5px;
-            cursor: pointer;
-            box-shadow: 0 5px 0 #5c0000;
-            transition: 0.1s;
-            touch-action: manipulation; /* Optimasi touch */
-        }
-
-        .btn-unlock:active {
-            box-shadow: 0 2px 0 #5c0000;
-            transform: translateY(3px);
-        }
-
-        /* LAMPU INDIKATOR */
-        .status-light {
-            width: 15px;
-            height: 15px;
-            background-color: #330000;
-            border-radius: 50%;
-            margin-top: 25px;
-            box-shadow: 0 0 5px #ff0000;
-            transition: 0.3s;
-        }
-        .status-light.success {
-            background-color: #00ff00;
-            box-shadow: 0 0 15px #00ff00;
-        }
-        .status-light.error {
-            background-color: #ff0000;
-            animation: blink 0.5s 3;
-        }
-
-        /* BAGIAN DALAM (KERTAS RAHASIA) */
-        .vault-inside {
-            width: 100%;
-            height: 100%;
-            background-color: #000;
-            position: absolute;
-            z-index: 1;
-            border-radius: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
-            background-image: url("https://www.transparenttextures.com/patterns/dark-matter.png");
-        }
-
-        .secret-paper {
-            background-color: #f4e4bc;
-            width: 100%;
-            height: 90%;
+            max-width: 400px;
             padding: 20px;
+            border: 2px solid #00ff41;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+            background: rgba(0, 20, 0, 0.9);
+        }
+
+        h1 { font-size: 24px; letter-spacing: 2px; margin-bottom: 10px; }
+        p { font-size: 12px; opacity: 0.8; margin-bottom: 25px; }
+
+        input {
+            width: 80%;
+            padding: 15px;
+            background: black;
+            border: 1px solid #00ff41;
+            color: #00ff41;
             font-family: 'Courier Prime', monospace;
-            color: #222;
-            box-shadow: 0 0 20px rgba(0,0,0,0.8);
-            transform: rotate(-1deg);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            overflow-y: auto; /* Scroll jika teks kepanjangan di HP kecil */
-        }
-        
-        .secret-paper::after {
-            content: "CONFIDENTIAL";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-30deg);
-            font-size: clamp(20px, 5vw, 35px); /* Ukuran font responsif */
-            color: rgba(200, 0, 0, 0.15);
-            font-weight: bold;
-            border: 4px solid rgba(200, 0, 0, 0.15);
-            padding: 10px;
-            pointer-events: none;
-        }
-
-        .paper-content h2 {
-            text-decoration: underline;
-            font-size: 16px;
-            margin-bottom: 15px;
+            font-size: 20px;
             text-align: center;
+            text-transform: uppercase;
+            outline: none;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
         }
 
-        .paper-content p {
-            font-size: 13px; /* Ukuran standar */
-            line-height: 1.4;
-            margin: 8px 0;
-            font-weight: 600;
-        }
-
-        /* Responsif untuk layar HP sangat kecil (iPhone SE, dll) */
-        @media (max-width: 340px) {
-            .paper-content p {
-                font-size: 11px;
-            }
-            .display-screen {
-                font-size: 18px;
-            }
-        }
-
-        .highlight {
-            background-color: #000;
-            color: #fff;
-            padding: 8px 12px;
+        button {
+            width: 90%;
+            padding: 15px;
+            background: #00ff41;
+            color: black;
+            border: none;
             font-weight: bold;
-            font-size: 16px !important;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: 'Courier Prime', monospace;
+        }
+        button:active { transform: scale(0.98); }
+
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            border-top: 1px dashed #00ff41;
+            padding-top: 20px;
+        }
+        .ig-name {
+            font-size: 22px;
+            font-weight: bold;
+            background: #00ff41;
+            color: black;
+            padding: 5px 10px;
             display: inline-block;
-            margin-top: 5px;
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
-            border-radius: 4px;
+            margin-top: 10px;
         }
 
-        /* ANIMASI */
-        .door-open {
-            transform: rotateY(-105deg);
-        }
-
-        .shake {
-            animation: shake 0.5s;
-        }
-
-        @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            50% { transform: translateX(10px); }
-            75% { transform: translateX(-10px); }
-            100% { transform: translateX(0); }
-        }
-
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.3; }
-            100% { opacity: 1; }
-        }
-
+        .error { color: red; display: none; margin-top: 10px; font-size: 12px; }
     </style>
 </head>
 <body>
 
-    <div class="vault-container">
-        <div class="vault-door" id="vaultDoor">
-            <div class="dial-container">
-                <div class="dial" id="dial">
-                    <div class="knob"></div>
-                </div>
-            </div>
-            
-            <input type="text" id="passcodeInput" class="display-screen" placeholder="ENTER CODE" maxlength="8">
-            
-            <button class="btn-unlock" onclick="checkCode()">ACCESS VAULT</button>
-            <div class="status-light" id="statusLight"></div>
-        </div>
+    <div class="container">
+        <h1>VAULT 77</h1>
+        <p>ENTER 8-LETTER PASSPHRASE FROM PAINTINGS</p>
+        
+        <input type="text" id="passInput" maxlength="8" placeholder="________">
+        <button onclick="checkPass()">UNLOCK</button>
+        
+        <p id="errorMsg" class="error">ACCESS DENIED. INVALID CODE.</p>
 
-        <div class="vault-inside">
-            <div class="secret-paper">
-                <div class="paper-content">
-                    <h2>FILE: LAST WILL</h2>
-                    <p>Sistem ini adalah pertahanan terakhir saya.</p>
-                    <p>Jika pintu ini terbuka, artinya saya sudah tidak ada.</p>
-                    <br>
-                    <p><strong>SUBJECT:</strong> CHIMERA VACCINE</p>
-                    <p><strong>CREATED BY:</strong></p>
-                    <p>Dr. E**** T*****</p> <br>
-                    <p>Saya menyembunyikan lokasi vaksin yang asli di akun samaran ini. Mereka tidak akan menduganya.</p>
-                    <p>Segera amankan data di profil ini:</p>
-                    <br>
-                    <p><strong>INSTAGRAM TARGET:</strong></p>
-                    <center><p class="highlight">@droeoeurripw</p></center> 
-                    <br>
-                    <p style="font-size: 10px; text-align: right; margin-top: 15px;">- End of message -</p>
-                </div>
-            </div>
+        <div id="result" class="result-box">
+            <p>ACCESS GRANTED.</p>
+            <p>Follow instagram:</p>
+            <div class="ig-name">@droeoeurripw</div>
+            <p style="font-size:10px; margin-top:15px;">(CHECK CAPTIONS FOR PIN & LINK IN BIO)</p>
         </div>
     </div>
 
     <script>
-        function checkCode() {
-            const correctCode = "EWPIDJFY"; // PASSWORD DARI LUKISAN
-            const inputField = document.getElementById('passcodeInput');
-            const userCode = inputField.value.toUpperCase().trim();
-            const dial = document.getElementById('dial');
-            const door = document.getElementById('vaultDoor');
-            const light = document.getElementById('statusLight');
-
-            // Cek jika input kosong
-            if (userCode === "") return;
-
-            // 1. Putar Roda (Visual Effect)
-            let randomRot = Math.floor(Math.random() * 360) + 720; 
-            dial.style.transform = `rotate(${randomRot}deg)`;
-
-            // 2. Tunggu roda berhenti, baru cek password
-            setTimeout(() => {
-                if (userCode === correctCode) {
-                    // JIKA BENAR
-                    light.classList.add('success');
-                    setTimeout(() => {
-                        door.classList.add('door-open'); // Buka Pintu
-                    }, 500);
-                } else {
-                    // JIKA SALAH
-                    light.classList.add('error');
-                    door.classList.add('shake'); // Efek Getar
-                    
-                    setTimeout(() => {
-                        light.classList.remove('error');
-                        door.classList.remove('shake');
-                        inputField.value = ''; 
-                        inputField.placeholder = "ACCESS DENIED";
-                    }, 500);
-                }
-            }, 1000); 
-        }
-
-        // Enter key support untuk HP dan PC
-        document.getElementById("passcodeInput").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                checkCode();
-                document.activeElement.blur(); // Menutup keyboard di HP setelah Enter
+        function checkPass() {
+            var input = document.getElementById('passInput').value.toUpperCase();
+            // PASSWORD DARI LUKISAN: EWPIDJFY
+            if(input === "EWPIDJFY") {
+                document.getElementById('result').style.display = "block";
+                document.getElementById('errorMsg').style.display = "none";
+            } else {
+                document.getElementById('errorMsg').style.display = "block";
+                document.getElementById('result').style.display = "none";
             }
+        }
+        
+        // Enter key support
+        document.getElementById("passInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") checkPass();
         });
+
+        // ANTI-CHEAT SCRIPT
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function(e) {
+            if(e.keyCode == 123) return false;
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+        }
     </script>
 </body>
 </html>
